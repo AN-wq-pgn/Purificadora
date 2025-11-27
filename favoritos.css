@@ -1,0 +1,39 @@
+/* ------- BOTÓN PARA ELIMINAR DE FAVORITOS ------- */
+
+.remove-btn {
+    position: relative;
+    bottom: 10%;
+    background: rgb(250, 30, 15);
+    color: black;
+    border: none;
+    font-size: 15px;
+    padding: 5px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.remove-btn:hover {
+    background: #d40000;
+}
+
+/* ------- MENSAJE CUANDO NO HAY FAVORITOS ------- */
+
+.no-favs {
+    text-align: center;
+    color: #730f0f;
+    background: #ffffffc4;
+    padding: 40px;
+    border-radius: 10px;
+    margin: 40px auto;
+    width: 80%;
+    max-width: 600px;
+    font-size: 18px;
+    box-shadow: 0 2px 8px #00000030;
+}
+
+.no-favs a {
+    color: #008cff;
+    text-decoration: none;
+    font-weight: bold;
+}

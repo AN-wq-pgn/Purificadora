@@ -1,0 +1,446 @@
+/* ----------- BASE ------------ */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background-color: #6ad3d6;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+header img {
+    width: 80px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #c8e6c9;
+}
+
+/* ----------- LAYOUT ------------ */
+
+.layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+aside {
+    width: 300px;
+    background: #71baf7;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+/*  SECTIONS */
+
+section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/*  CARRUSEL MAIN */
+
+.carrusel {
+    width: 100%;
+    max-height: 280px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.carrusel ul {
+    display: flex;
+    width: 300%;
+    animation: slide 20s infinite ease-in-out;
+    padding: 0;
+    margin: 0;
+}
+
+.carrusel li {
+    width: 100%;
+    list-style: none;
+    position: relative;
+}
+
+.carrusel img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+/* texto opcional en imágenes */
+.texto {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+/* ----------- CARRUSEL ASIDE ------------ */
+
+.carrusel-aside {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.carrusel-aside ul {
+    display: flex;
+    width: 300%;
+    animation: slideAside 15s infinite ease-in-out;
+    padding: 0;
+    margin: 0;
+}
+
+.carrusel-aside li {
+    width: 100%;
+    list-style: none;
+}
+
+.carrusel-aside img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ----------- ANIMACIONES ------------ */
+
+@keyframes slide {
+    0% { margin-left: 0; }
+    33% { margin-left: -100%; }
+    66% { margin-left: -200%; }
+    100% { margin-left: 0; }
+}
+
+@keyframes slideAside {
+    0% { margin-left: 0; }
+    33% { margin-left: -100%; }
+    66% { margin-left: -200%; }
+    100% { margin-left: 0; }
+}
+
+/*RELOJ*/
+@media (max-width: 900px) {
+    .contenedor-cards {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.horario-box {
+    width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,5);
+    text-align: center;
+    font-family: Arial;
+    margin: 20px 0;
+}
+
+#estado-negocio {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+.abierto { color: green; }
+.cerrado { color: red; }
+
+/* AQUI INICIA EL CSS DE LAS CARTAS GIRATORIAS */
+/* CONTENEDOR DEL MENÚ / CARDS */
+
+.contenedor-cards {
+    display: flex;
+    flex-direction: row;/*de izquierda a derecha*/
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    
+    width: 100%;
+}
+
+
+
+/* CONTENEDOR DE UNA CARD */
+#cardindex{
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+#menu {
+    width: 100%;
+    width: auto;
+    display: flex;
+    margin-top: 50px;
+}
+
+/*  TARJETA  */
+.card{
+    position: relative;
+    width: 300px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+/* Cuando la card está dentro de #cardindex */
+#cardindex .card{
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    perspective: none;
+}
+
+
+
+/* CARAS */
+.face-front,
+.face-back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* FRONT */
+.face-front{
+    background: #ffffff;
+    transform: rotateY(0deg);
+}
+
+  /* IMAGEN */
+  .face-front img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height:  100%; /* Mantiene la proporción original de la imagen */
+    object-fit: contain; /* Mantiene la imagen dentro del contenedor sin deformarla */
+    border-radius: 20px; 
+    display: block;
+}
+
+
+/* BACK */
+.face-back{
+    background-color: #333;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: flex;
+    padding: 20px;
+    box-sizing: border-box;
+    transform: rotateY(180deg);
+}
+
+.face-back h2 {
+    position: relative;
+    bottom: 35%;
+    font-size: 18px;
+  font-weight: bold;
+  color: #ececec;
+}
+
+.face-back p {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.zonas-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.zonas-lista li {
+    padding: 5px 0;
+    font-size: 0.95em;
+}
+
+
+/* HOVER - Girar la tarjeta cuando se hace hover en el contenedor */
+#cardindex:hover .card {
+    transform: rotateY(180deg);
+}
+
+.contenedor-cards > .card:hover {
+    transform: rotateY(180deg);
+}
+/* ------- BOTÓN PARA AGREGAR A FAVORITOS ------- */
+.fav-btn {
+    position: relative;
+    bottom: -40%;
+    background: gold;
+    color: black;
+    border: none;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.fav-btn:hover {
+    background: #ffcc00;
+}
+
+/*Table CRUD*/
+marquee {
+    background-color: rgb(#6ad3d6);
+    color: rgb(70, 137, 238);
+}
+
+.form-register {
+    width: 400px;
+    background: #24303c;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    color: #eee;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.form-register h4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.controls {
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #09c4fd;
+    font-size: 18px;
+    color: white;
+}
+
+.form-register p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.form-register a {
+    color: white;
+    text-decoration: none;
+}
+
+.form-register a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.form-register .botons {
+    width: 100%;
+    background: #3e75ec;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+/* ----------- REDES SOCIALES ------------ */
+
+.social-buttons {
+    text-align: center;
+}
+
+.social-buttons a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 10px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 35px;
+}
+
+.Facebook { background-color: #3b5998; }
+.Gmail { background-color: #55acee; }
+.Instagram { background: linear-gradient(rgb(229,3,86), rgb(231,191,54), rgb(232,78,78)); }
+.WhatsApp { background-color: #2ee54c; }
+
+footer {
+    background-color: #6ad3d6;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ----------- RESPONSIVE ------------ */
+
+@media (max-width: 900px) {
+    .layout {
+        flex-direction: column;
+    }
+    aside {
+        width: 100%;
+    }
+    .carrusel img { height: 200px; }
+    .carrusel-aside img { height: 160px; }
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 1.4em; }
+    section {
+        margin: 15px;
+        padding: 15px;
+    }
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
